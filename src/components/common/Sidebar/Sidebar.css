@@ -1,0 +1,49 @@
+.sidebar {
+    width: 60px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.sidebar button {
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.sidebar .active {
+    background: orange;
+    color: #fff;
+    border-radius: 6px;
+}
+
+
+.nav-btn {
+    width: 40px;
+    height: 40px;
+    margin: 8px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: #999;
+    border-width: 1px;
+    border-color: #999;
+}
+
+.nav-btn:hover {
+    background: #f2f2f2;
+}
+
+/* React Router auto active */
+.nav-btn.active {
+    background: #ff7a00;
+    color: #fff;
+    border-width:0px;
+}

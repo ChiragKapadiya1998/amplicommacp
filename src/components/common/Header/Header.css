@@ -1,0 +1,170 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 10;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 8px 12px; */
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-right: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* Left */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 32px;
+  width: 32px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Center */
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.period-main {
+  padding: 2px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.period-buttons {
+  display: flex;
+  overflow: hidden;
+}
+
+.period-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  /* border: none; */
+  background: #ffffff;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.btn-title {
+  margin-right: 10;
+}
+
+.icon-style {
+  margin-left: 5;
+}
+
+.period-btn:hover {
+  background: #f3f4f6;
+}
+
+.period-btn.active {
+  background: #ffedd5;
+  color: #ea580c;
+  display: block;
+  border-radius: 8px;
+}
+
+.period-btn.select {
+  background: #ffedd5;
+  /* color: #ea580c; */
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.date-range {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #fff7ed;
+  color: #ea580c;
+  font-size: 14px;
+}
+
+.select-period {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.compare-main {
+  padding: 2px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.compare-box1 {
+  /* padding: 1px 1px; */
+  border-radius: 8px;
+  background: #fff7ed;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.compare-box {
+  padding: 2px 10px;
+  border-radius: 8px;
+  background: #fff7ed;
+}
+
+.compare-label {
+  font-size: 11px;
+  color: #6b7280;
+  text-align: left;
+}
+
+.compare-date {
+  font-size: 14px;
+  color: #ea580c;
+}
+
+/* Right */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 20px;
+  height: 20px;
+  background: #f97316;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}

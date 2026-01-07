@@ -1,0 +1,115 @@
+.dashboard-container {
+  font-family: Inter, sans-serif;
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  margin-top: 20px;
+}
+
+/* Tabs */
+.tab {
+  font-size: 14px;
+  color: #8a8a8a;
+  cursor: pointer;
+  padding-bottom: 6px;
+  transition: all 0.2s ease;
+  margin-left: 22px;
+}
+
+.tab:hover {
+  color: #ff6a00;
+}
+
+.tab.active {
+  color: #ff6a00;
+  font-weight: 600;
+  border-bottom: 2px solid #ff6a00;
+}
+
+/* Metrics Container */
+.metrics-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+/* Metric */
+.metric {
+  padding: 10px;
+  border-right: 1px solid #eee;
+}
+
+.metric:last-child {
+  border-right: none;
+}
+
+.active-border {
+  border-bottom: 3px solid #ff6a00;
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: 12px;
+  color: #8a8a8a;
+  font-weight: 600;
+}
+
+.metric-value {
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Analyze Button */
+.analyze-btn {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.analyze-btn:hover {
+  border-color: #ff6a00;
+  color: #ff6a00;
+}
+
+.analyze-btn:active,
+.analyze-btn:focus {
+  background: #ff6a00;
+  color: #fff;
+  border-color: #ff6a00;
+  outline: none;
+}
+
+/* Badges */
+.badge {
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.badge.red {
+  color: #e53935;
+}
+
+.badge.green {
+  color: #2e7d32;
+}
