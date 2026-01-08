@@ -306,10 +306,6 @@
     transition: all 0.3s ease; /* Smooth transition for width and opacity */
 }
 
-.icon-wrapper:hover {
-    overflow: visible;
-}
-
 .breakdown-item:hover .icon-wrapper {
     width: 20px;       /* Expand on hover */
     opacity: 1;
@@ -363,29 +359,7 @@
     white-space: normal;
 }
 
-.custom-tooltip1 {
-    display: none;
-    position: absolute;
-    top: 30%;
-    left: 10%; /* Show to the right or above? Image shows right/top */
-    transform: translateY(-50%);
-    margin-left: 10px;
-    background: #fff;
-    border: 1px solid #eee;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    padding: 6px 12px;
-    border-radius: 6px;
-    z-index: 100;
-    width: max-content;
-    max-width: 200px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #555;
-    pointer-events: none;
-    white-space: normal;
-}
-
-.has-tooltip-trigger:hover .custom-tooltip,.custom-tooltip1 {
+.has-tooltip-trigger:hover .custom-tooltip {
     display: block;
     animation: fadeIn 0.2s ease;
 }
