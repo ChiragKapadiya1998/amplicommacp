@@ -78,7 +78,8 @@ export default function Header() {
         <div className="header-left">
           <img
             className="logo"
-            src="https://app-stage.amplicommacp.com/assets/assets/amplicommlogo.c57c1180cfce1ec88045b3288b068bb0.svg?platform=web&hash=c57c1180cfce1ec88045b3288b068bb0"
+            src="https://img.freepik.com/free-vector/logo-with-shape-3d_1043-51.jpg?t=st=1767846251~exp=1767849851~hmac=d418669011df025853a24dcc3401a5879de64b9b2ca217d097ee482d0cbf2ced&w=2000"
+            // src="https://app-stage.amplicommacp.com/assets/assets/amplicommlogo.c57c1180cfce1ec88045b3288b068bb0.svg?platform=web&hash=c57c1180cfce1ec88045b3288b068bb0"
             alt="Amplicomm"
           />
           <h1 className="title">Home</h1>
