@@ -1,46 +1,19 @@
-import { useEffect, useState } from "react";
-import Select from "react-select";
-import { components } from "react-select";
-
+import { useState, useMemo, useRef, useEffect } from "react";
+import Select, { components } from "react-select";
+import { FaSearch } from "react-icons/fa";
 import "./FiltersBar.css";
-import {
-  brandData,
-  categoryData,
-  channelData,
-  parentCategoryData,
-  SKUData,
-  tenantData,
-} from "../../../utils/constant";
+import constantData from "../../../utils/constant.json";
+import FilterDropdown from "./FilterDropdown";
 
-const selectStyles = {
-  control: (base) => ({
-    ...base,
-    minHeight: 36,
-    borderRadius: 8,
-    borderColor: "#d1d5db",
-    boxShadow: "none",
-    fontSize: 14,
-    cursor: "pointer",
-  }),
-};
-
-const MultiValue = (props) => {
-  const { index, getValue } = props;
-  const selectedValues = getValue();
-
-  // Show only first selected value
-  if (index === 0) {
-    return <components.MultiValue {...props} />;
-  }
-
-  // Show +N for second item only
-  if (index === 1) {
-    return <div className="multi-count">+{selectedValues.length - 1}</div>;
-  }
-
-  // Hide remaining items
-  return null;
-};
+// Safely access data or default to empty arrays
+const {
+  brandData = [],
+  categoryData = [],
+  channelData = [],
+  parentCategoryData = [],
+  SKUData = [],
+  tenantData = [],
+} = constantData || {};
 
 export default function FiltersBar() {
   const [tenant, setTenant] = useState([]);
@@ -61,9 +34,6 @@ export default function FiltersBar() {
     };
 
     console.log("Applied Filters JSON:", filtersJson);
-
-    // Example API call
-    // axios.post("/api/filters", filtersJson)
   };
 
   const hasFiltersSelected =
@@ -77,71 +47,41 @@ export default function FiltersBar() {
   return (
     <div className="filters-container">
       <div className="filters-left">
-        <Select
-          isMulti
-          placeholder="Tenant : Select"
-          styles={selectStyles}
+        <FilterDropdown
+          label="Tenant"
+          options={tenantData}
           value={tenant}
           onChange={setTenant}
-          options={tenantData}
-          components={{
-            MultiValue,
-          }}
         />
-        <Select
-          isMulti
-          placeholder="Brand : Select"
-          styles={selectStyles}
+        <FilterDropdown
+          label="Brand"
+          options={brandData}
           value={brand}
           onChange={setBrand}
-          options={brandData}
-          components={{
-            MultiValue,
-          }}
         />
-        <Select
-          isMulti
-          placeholder="Channel : Select"
-          styles={selectStyles}
+        <FilterDropdown
+          label="Channel"
+          options={channelData}
           value={channel}
           onChange={setChannel}
-          options={channelData}
-          components={{
-            MultiValue,
-          }}
         />
-        <Select
-          isMulti
-          placeholder="Parent Category : Select"
-          styles={selectStyles}
+        <FilterDropdown
+          label="Parent Category"
+          options={parentCategoryData}
           value={parent}
           onChange={setParent}
-          options={parentCategoryData}
-          components={{
-            MultiValue,
-          }}
         />
-        <Select
-          isMulti
-          placeholder="Category : Select"
-          styles={selectStyles}
+        <FilterDropdown
+          label="Category"
+          options={categoryData}
           value={category}
           onChange={setCategory}
-          options={categoryData}
-          components={{
-            MultiValue,
-          }}
         />
-        <Select
-          isMulti
-          placeholder="SKU : Select"
-          styles={selectStyles}
+        <FilterDropdown
+          label="SKU"
+          options={SKUData}
           value={sku}
           onChange={setSku}
-          components={{
-            MultiValue,
-          }}
-          options={SKUData}
         />
       </div>
 

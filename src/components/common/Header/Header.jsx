@@ -1,8 +1,9 @@
-import { FaAngleDown } from "react-icons/fa6";
+import { FaAngleDown, FaTimes } from "react-icons/fa";
 import "./Header.css";
 import { useRef, useState } from "react";
 import DateRangePicker from "rsuite/DateRangePicker";
-import PERIODS from "../../../utils/constant";
+import constantData from "../../../utils/constant.json";
+const { PERIODS } = constantData;
 
 export default function Header() {
   const [active, setActive] = useState("1D");
@@ -10,6 +11,7 @@ export default function Header() {
   const [openPicker1, setOpenPicker1] = useState(false);
   const [customRange, setCustomRange] = useState(null);
   const [customRange1, setCustomRange1] = useState(null);
+  const [openProfile, setOpenProfile] = useState(false);
 
   const formatDate = (date) =>
     date.toLocaleDateString("en-US", {
@@ -124,10 +126,12 @@ export default function Header() {
                                 showHeader={false}
                                 defaultValue={[new Date(), new Date()]}
                                 onChange={(value, event) => {
+                                  event && event.stopPropagation();
                                   setCustomRange(value);
                                   setOpenPicker(false);
                                 }}
-                                onOk={(value) => {
+                                onOk={(value, event) => {
+                                  event && event.stopPropagation();
                                   setCustomRange(value);
                                   setOpenPicker(false);
                                 }}
@@ -158,7 +162,7 @@ export default function Header() {
             </div>
 
             <div className="compare-main">
-              <div className="compare-box1">
+              <div className="compare-box1" onClick={() => setOpenPicker1((prev) => !prev)}>
                 <div className="compare-box">
                   <p className="compare-label">Compare Period</p>
                   <div className="compare-date-row">
@@ -188,17 +192,32 @@ export default function Header() {
                 <FaAngleDown
                   height={10}
                   width={10}
-                  onClick={() => setOpenPicker1((prev) => !prev)}
                 />
               </div>
             </div>
           </div>
 
-          {/* Right Section */}
-          <div className="header-right">
+{/* Right Section */}
+          <div className="header-right" onClick={() => setOpenProfile(!openProfile)}>
             <div className="avatar">A</div>
             <span className="username">Admin</span>
-            <FaAngleDown />
+            <FaAngleDown className={`arrow-icon ${openProfile ? "rotate" : ""}`} />
+            
+            {openProfile && (
+              <div className="profile-dropdown" onClick={(e) => e.stopPropagation()}>
+                <div className="dropdown-header">
+                  <div className="header-info">
+                    <div className="avatar">A</div>
+                    <span className="username">Admin</span>
+                  </div>
+                  <FaTimes className="close-icon" onClick={() => setOpenProfile(false)} />
+                </div>
+                <ul className="dropdown-menu">
+                  <li className="dropdown-item" onClick={() => setOpenProfile(false)}>Change Password</li>
+                  <li className="dropdown-item" onClick={() => setOpenProfile(false)}>Logout</li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

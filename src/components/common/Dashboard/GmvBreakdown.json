@@ -1,0 +1,163 @@
+[
+    {
+        "title": "By Channel",
+        "updatedAt": "Updated 01 Jan 1970 @ 05:30",
+        "columns": [
+            "CHANNEL",
+            "GMV"
+        ],
+        "data": [
+            {
+                "name": "HYUGALIFE",
+                "value": "₹709",
+                "change": "+77%",
+                "isIncrease": true
+            },
+            {
+                "name": "MYNTRA",
+                "value": "₹37.79K",
+                "change": "-90%",
+                "isIncrease": false
+            },
+            {
+                "name": "FLIPKART",
+                "value": "₹2.41L",
+                "change": "-60%",
+                "isIncrease": false
+            },
+            {
+                "name": "SHOPIFY",
+                "value": "₹7.03L",
+                "change": "-49%",
+                "isIncrease": false
+            },
+            {
+                "name": "AMAZON.IN",
+                "value": "₹12.47L",
+                "change": "-56%",
+                "isIncrease": false
+            }
+        ]
+    },
+    {
+        "title": "By Category",
+        "updatedAt": "Updated 34 Mins. Ago",
+        "columns": [
+            "CATEGORY",
+            "GMV"
+        ],
+        "data": [
+            {
+                "name": "Towel Hanger",
+                "value": "₹22.05K",
+                "change": "0%",
+                "isIncrease": null
+            },
+            {
+                "name": "Basil Soap",
+                "value": "₹159",
+                "change": "-49%",
+                "isIncrease": false
+            },
+            {
+                "name": "Bhringraj Hair Oil",
+                "value": "₹1.13K",
+                "change": "-3%",
+                "isIncrease": false
+            },
+            {
+                "name": "Bench",
+                "value": "₹19.28K",
+                "change": "0%",
+                "isIncrease": null
+            },
+            {
+                "name": "Black Pearl Shampoo",
+                "value": "₹343",
+                "change": "-36%",
+                "isIncrease": false
+            }
+        ]
+    },
+    {
+        "title": "By SKU",
+        "updatedAt": "Updated 34 Mins. Ago",
+        "columns": [
+            "SKU",
+            "GMV"
+        ],
+        "data": [
+            {
+                "name": "Basil Bento Lunch Box - 900ml | 3-...",
+                "value": "₹13.59K",
+                "change": "0%",
+                "isIncrease": null
+            },
+            {
+                "name": "Old World Ready-To-Assemble Towel...",
+                "value": "₹22.05K",
+                "change": "0%",
+                "isIncrease": null
+            },
+            {
+                "name": "Jiva Ayurveda Multi Flora Honey - 500gm...",
+                "value": "₹403",
+                "change": "-0.2%",
+                "isIncrease": false
+            },
+            {
+                "name": "West Village Upholstered Cushion...",
+                "value": "₹19.28K",
+                "change": "0%",
+                "isIncrease": null
+            },
+            {
+                "name": "Jiva Amla Chatpata Candy For All Age...",
+                "value": "₹176",
+                "change": "-4%",
+                "isIncrease": false
+            }
+        ]
+    },
+    {
+        "title": "By State",
+        "updatedAt": "Updated 1 Hrs. Ago",
+        "columns": [
+            "STATE",
+            "GMV"
+        ],
+        "data": [
+            {
+                "name": "Andaman And Nicobar Islands",
+                "value": "₹6.26K",
+                "change": "+2,609%",
+                "isIncrease": true
+            },
+            {
+                "name": "The Dadra And Haveli And Dam...",
+                "value": "₹159",
+                "subValue": "Andaman And Nicobar Islands",
+                "change": "-49%",
+                "isIncrease": false
+            },
+            {
+                "name": "Mizoram",
+                "value": "₹1.45K",
+                "change": "-51%",
+                "isIncrease": false
+            },
+            {
+                "name": "Manipur",
+                "value": "₹11.62K",
+                "change": "+35%",
+                "isIncrease": true
+            },
+            {
+                "name": "Meghalaya",
+                "value": "₹10.72K",
+                "change": "+28%",
+                "isIncrease": true
+            }
+        ]
+    }
+]
