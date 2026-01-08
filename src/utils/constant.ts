@@ -77,3 +77,5 @@ export const SKUData = [
   },
   { label: "A95+L-BLU-FM3", value: "A95+L-BLU-FM3" },
 ];
+
+export const PERIODS = ["1D", "1W", "1M", "6M", "1Y", "Select Period"];

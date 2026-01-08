@@ -2,6 +2,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import "./Header.css";
 import { useRef, useState } from "react";
 import DateRangePicker from "rsuite/DateRangePicker";
+import PERIODS from "../../../utils/constant";
 
 export default function Header() {
   const [active, setActive] = useState("1D");
@@ -9,9 +10,6 @@ export default function Header() {
   const [openPicker1, setOpenPicker1] = useState(false);
   const [customRange, setCustomRange] = useState(null);
   const [customRange1, setCustomRange1] = useState(null);
-  const datePickerRef = useRef(null);
-
-  const PERIODS = ["1D", "1W", "1M", "6M", "1Y", "Select Period"];
 
   const formatDate = (date) =>
     date.toLocaleDateString("en-US", {
@@ -117,7 +115,6 @@ export default function Header() {
                           (item == "Select Period" ? (
                             <div className="date-picker-wrapper">
                               <DateRangePicker
-                                ref={datePickerRef}
                                 open={openPicker}
                                 appearance={"default"}
                                 plaintext

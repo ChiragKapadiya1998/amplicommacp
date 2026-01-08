@@ -46,6 +46,14 @@
   padding: 10px;
   border-right: 1px solid #eee;
 }
+.metric1 {
+  padding: 10px;
+  border-right: 1px solid #eee;
+}
+
+.metric:hover {
+  background: #e4e4e4;
+}
 
 .metric:last-child {
   border-right: none;

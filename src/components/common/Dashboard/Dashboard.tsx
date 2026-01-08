@@ -23,7 +23,7 @@ const Dashboard = () => {
 
       {/* Metrics */}
       <div className="metrics-card">
-        <div className="metric active-border">
+        <div className="metric1 active-border">
           <div className="metric-header">
             <span className="label">GMV</span>
             <button
