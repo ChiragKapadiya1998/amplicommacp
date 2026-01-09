@@ -5,6 +5,7 @@ import GmvBreakdown from "./GmvBreakdown";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Seller");
+  const [selectedMetric, setSelectedMetric] = useState<number>(0);
   const navigate = useNavigate();
 
   const tabs = ["Seller", "Primary", "Secondary"];
@@ -54,7 +55,9 @@ const Dashboard = () => {
         {metricsData.map((metric: { label: string; value: string; isIncrease: boolean; change: string }, index: number) => (
           <div
             key={index}
-            className={`metric ${index === 0 ? "metric-primary active-border" : ""}`}
+            className={`metric ${index === selectedMetric ? "metric-primary active-border" : ""}`}
+            onClick={() => setSelectedMetric(index)}
+            style={{ cursor: "pointer" }}
           >
             <span className="label text-uppercase">{metric.label}</span>
             <div className="metric-header">
@@ -64,9 +67,12 @@ const Dashboard = () => {
                   {metric.isIncrease ? "↗" : "↓"} {metric.change}
                 </span>
               </div>
-              {index === 0 && (
+              {index === selectedMetric && (
                 <button
-                  onClick={() => navigate("/reports")}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate("/reports");
+                  }}
                   className="analyze-btn"
                 >
                   Analyze
@@ -76,12 +82,12 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-      
-  
+
+
 
       <div className="top-performers">Top-Performers</div>
       <GmvBreakdown />
-       <div className="top-performers under-performers">Under-Performers</div>
+      <div className="top-performers under-performers">Under-Performers</div>
       <GmvBreakdown />
     </div>
   );

@@ -3,14 +3,22 @@ import "./Header.css";
 import { useRef, useState } from "react";
 import DateRangePicker from "rsuite/DateRangePicker";
 import constantData from "../../../utils/constant.json";
+import { useDateFilter } from "../../../context/DateFilterContext";
+
 const { PERIODS } = constantData;
 
 export default function Header() {
-  const [active, setActive] = useState("1D");
+  const {
+    activePeriod,
+    setActivePeriod,
+    dateRange,
+    setDateRange,
+    compareDateRange,
+    setCompareDateRange,
+  } = useDateFilter();
+
   const [openPicker, setOpenPicker] = useState(false);
   const [openPicker1, setOpenPicker1] = useState(false);
-  const [customRange, setCustomRange] = useState(null);
-  const [customRange1, setCustomRange1] = useState(null);
   const [openProfile, setOpenProfile] = useState(false);
 
   const formatDate = (date) =>
@@ -61,13 +69,13 @@ export default function Header() {
   };
 
   const handlePeriodClick = (item) => {
-    setActive(item);
+    setActivePeriod(item);
 
     if (item === "Select Period") {
       setOpenPicker(true);
     } else {
       setOpenPicker(false);
-      setCustomRange(null);
+      setDateRange(null);
     }
   };
 
@@ -95,10 +103,10 @@ export default function Header() {
                       key={item}
                       className={`period-btn ${
                         item == "Select Period"
-                          ? active === item
+                          ? activePeriod === item
                             ? "select"
                             : ""
-                          : active === item
+                          : activePeriod === item
                           ? "active"
                           : ""
                       }`}
@@ -107,13 +115,13 @@ export default function Header() {
                       <div>
                         <p
                           className={`${
-                            active === item ? "compare-label" : ""
+                            activePeriod === item ? "compare-label" : ""
                           }`}
                         >
                           {item}
                         </p>
 
-                        {active === item &&
+                        {activePeriod === item &&
                           (item == "Select Period" ? (
                             <div className="date-picker-wrapper">
                               <DateRangePicker
@@ -127,12 +135,12 @@ export default function Header() {
                                 defaultValue={[new Date(), new Date()]}
                                 onChange={(value, event) => {
                                   event && event.stopPropagation();
-                                  setCustomRange(value);
+                                  setDateRange(value);
                                   setOpenPicker(false);
                                 }}
                                 onOk={(value, event) => {
                                   event && event.stopPropagation();
-                                  setCustomRange(value);
+                                  setDateRange(value);
                                   setOpenPicker(false);
                                 }}
                                 placement="bottomEnd"
@@ -144,7 +152,7 @@ export default function Header() {
                             </div>
                           ) : (
                             <span className="compare-date">
-                              {getDateRange(item, {
+                              {getDateRange(item, dateRange || {
                                 start: new Date(),
                                 end: new Date(),
                               })}
@@ -162,37 +170,47 @@ export default function Header() {
             </div>
 
             <div className="compare-main">
-              <div className="compare-box1" onClick={() => setOpenPicker1((prev) => !prev)}>
+              <div
+                className="compare-box1"
+                onClick={(e) => {
+                  if (openPicker1 && !e.currentTarget.contains(e.target)) {
+                    return;
+                  }
+                  setOpenPicker1((prev) => !prev);
+                }}
+              >
                 <div className="compare-box">
                   <p className="compare-label">Compare Period</p>
                   <div className="compare-date-row">
                     <div className="date-picker-wrapper">
                       <DateRangePicker
                         open={openPicker1}
-                        appearance
+                        appearance={"default"}
                         plaintext
-                        character={"-"}
-                        color={"red"}
+                        style={{ color: "#f97316" }}
                         size="sm"
                         w={240}
-                        style={{ color: "#f97316" }}
                         showHeader={false}
                         defaultValue={[new Date(), new Date()]}
-                        onChange={(value) => {
-                          setCustomRange1(value);
+                        onChange={(value, event) => {
+                          event && event.stopPropagation();
+                          setCompareDateRange(value);
+                        }}
+                        onOk={(value, event) => {
+                          event && event.stopPropagation();
+                          setCompareDateRange(value);
                           setOpenPicker1(false);
                         }}
                         placement="bottomEnd"
                         container={() => document.body}
-                        onClose={() => setOpenPicker1(false)}
+                        onClose={() => {
+                          setOpenPicker1(false);
+                        }}
                       />
                     </div>
                   </div>
                 </div>
-                <FaAngleDown
-                  height={10}
-                  width={10}
-                />
+                <FaAngleDown height={10} width={10} />
               </div>
             </div>
           </div>

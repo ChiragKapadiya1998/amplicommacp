@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFilter } from "react-icons/fa";
 import { AiOutlineSwap } from "react-icons/ai"; // Using swap icon for random icon in image if needed, or similar.
+import { Tooltip, Whisper } from "rsuite";
 // Actually, looking at the image, specifically "Andaman And Nicobar Islands" has an icon.
 // The image shows a shuffle/swap icon next to "Andaman And Nicobar Islands".
 // Let's import it.
@@ -20,6 +21,14 @@ interface BreakdownCardProps {
   data: BreakdownData[];
 }
 
+const getSwapTooltip = (title: React.ReactNode) => (
+  <Tooltip>
+    {`${title} Channels with highest contribution in total sales`}
+  </Tooltip>
+);
+
+
+
 const BreakdownCard: React.FC<BreakdownCardProps> = ({
   title,
   updatedAt,
@@ -29,7 +38,9 @@ const BreakdownCard: React.FC<BreakdownCardProps> = ({
   return (
     <div className="breakdown-card">
       <div className="breakdown-header">
-        <h3 className="breakdown-title">{title}</h3>
+        <Whisper placement="top" trigger="hover" speaker={getSwapTooltip(title)}>
+          <h3 className="breakdown-title">{title}</h3>
+        </Whisper>
         <div className="filter-icon-wrapper">
           <span className="filter-count">2</span>
           <FaFilter className="filter-icon" />
@@ -49,10 +60,9 @@ const BreakdownCard: React.FC<BreakdownCardProps> = ({
           <div key={index} className="breakdown-item">
             <div className="item-left-content">
               <div className="icon-wrapper has-tooltip-trigger">
-                <AiOutlineSwap className="swap-icon" />
-                {/* <div className="custom-tooltip">
-                  Cross-filter and refresh the dashboard
-                </div> */}
+                <Whisper placement="top" trigger="hover" speaker={getSwapTooltip(title)}>
+                  <AiOutlineSwap className="swap-icon" />
+                </Whisper>
               </div>
               <div className="item-name has-tooltip-trigger">
                 {item.name}

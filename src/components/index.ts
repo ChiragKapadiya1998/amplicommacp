@@ -4,4 +4,6 @@ import Layout from "./common/Layout/Layout";
 import FiltersBar from "./common/FiltersBar/FiltersBar";
 import Dashboard from "./common/Dashboard/Dashboard";
 
-export { Header, Sidebar, Layout, FiltersBar, Dashboard };
+import GmvChart from "./GmvChart/GmvChart";
+
+export { Header, Sidebar, Layout, FiltersBar, Dashboard, GmvChart };
