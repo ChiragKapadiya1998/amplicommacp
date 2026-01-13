@@ -1,7 +1,9 @@
 import { Header, Sidebar } from "../..";
 import "./Layout.css";
+import { memo } from "react";
+import type { ReactNode } from "react";
 
-export default function Layout({ children }) {
+function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="app">
       <Header />
@@ -13,3 +15,5 @@ export default function Layout({ children }) {
     </div>
   );
 }
+
+export default memo(Layout);

@@ -1,8 +1,23 @@
-import ReactECharts from 'echarts-for-react';
+import ReactEChartsCore from 'echarts-for-react/lib/core';
+import * as echarts from 'echarts/core';
+import {
+    LineChart
+} from 'echarts/charts';
+import {
+    GridComponent,
+    TooltipComponent,
+    DatasetComponent, // Often used, safe to include or remove if unused, but tooltip/grid are definitely used
+} from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
 import { useDateFilter } from '../../context/DateFilterContext';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, memo } from 'react';
 
-export default function ChartSection() {
+// Register the required components
+echarts.use(
+    [LineChart, GridComponent, TooltipComponent, CanvasRenderer, DatasetComponent]
+);
+
+function ChartSection() {
     const { activePeriod, dateRange } = useDateFilter();
     const [showSelected, setShowSelected] = useState(true);
     const [showCompare, setShowCompare] = useState(true);
@@ -217,10 +232,16 @@ export default function ChartSection() {
                     <span>GMV</span>
                 </div>
             </div>
-            <ReactECharts option={option} style={{ height: '350px' }} />
+            <ReactEChartsCore
+                echarts={echarts}
+                option={option}
+                style={{ height: '350px' }}
+            />
             <div style={{ fontSize: '12px', color: '#999', marginTop: '10px', fontStyle: 'italic' }}>
                 Updated {new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} @ {new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
             </div>
         </div>
     );
 }
+
+export default memo(ChartSection);

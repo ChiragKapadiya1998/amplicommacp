@@ -1,6 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from "react";
-import Select, { components } from "react-select";
-import { FaSearch } from "react-icons/fa";
+import { useState, memo } from "react";
 import "./FiltersBar.css";
 import constantData from "../../../utils/constant.json";
 import FilterDropdown from "./FilterDropdown";
@@ -15,13 +13,13 @@ const {
   tenantData = [],
 } = constantData || {};
 
-export default function FiltersBar() {
-  const [tenant, setTenant] = useState([]);
-  const [brand, setBrand] = useState([]);
-  const [channel, setChannel] = useState([]);
-  const [parent, setParent] = useState([]);
-  const [category, setCategory] = useState([]);
-  const [sku, setSku] = useState([]);
+function FiltersBar() {
+  const [tenant, setTenant] = useState<any[]>([]);
+  const [brand, setBrand] = useState<any[]>([]);
+  const [channel, setChannel] = useState<any[]>([]);
+  const [parent, setParent] = useState<any[]>([]);
+  const [category, setCategory] = useState<any[]>([]);
+  const [sku, setSku] = useState<any[]>([]);
 
   const handleApplyFilters = () => {
     const filtersJson = {
@@ -111,3 +109,5 @@ export default function FiltersBar() {
     </div>
   );
 }
+
+export default memo(FiltersBar);

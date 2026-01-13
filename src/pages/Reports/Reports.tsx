@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import "./Reports.css";
 
@@ -86,7 +86,7 @@ const MENU_ITEMS: MenuItem[] = [
   },
 ];
 
-export default function Reports() {
+function Reports() {
   // Expanded ID for top-level menu (Sales, Marketing, etc.)
   const [expandedId, setExpandedId] = useState<string | null>("sales");
 
@@ -164,7 +164,7 @@ export default function Reports() {
                             {sub.items!.map((leaf) => (
                               <div key={leaf.id} className="level3-item">
                                 <span className="bullet">•</span>
-                                <span>{leaf.label}</span>
+                                <span className="submenu-label">{leaf.label}</span>
                               </div>
                             ))}
                           </div>
@@ -186,3 +186,5 @@ export default function Reports() {
     </div>
   );
 }
+
+export default memo(Reports);

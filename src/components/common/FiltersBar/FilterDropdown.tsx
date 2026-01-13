@@ -1,22 +1,11 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, memo } from "react";
 import Select, { components } from "react-select";
 import { FaSearch } from "react-icons/fa";
 import "./FiltersBar.css";
-import constantData from "../../../utils/constant.json";
-
-// Safely access data or default to empty arrays
-const {
-  brandData = [],
-  categoryData = [],
-  channelData = [],
-  parentCategoryData = [],
-  SKUData = [],
-  tenantData = [],
-} = constantData || {};
 
 // Styles for React Select
 const selectStyles = {
-  control: (base) => ({
+  control: (base: any) => ({
     ...base,
     minHeight: 36,
     borderRadius: 8,
@@ -26,7 +15,7 @@ const selectStyles = {
     cursor: "pointer",
     backgroundColor: "#ffffff",
   }),
-  menu: (base) => ({
+  menu: (base: any) => ({
     ...base,
     borderRadius: 8,
     overflow: "hidden", // Rounded corners for the container
@@ -35,17 +24,17 @@ const selectStyles = {
     padding: 0,
     width: "100%",
   }),
-  menuList: (base) => ({
+  menuList: (base: any) => ({
     ...base,
     padding: 0,
-    maxHeight: "250px", 
+    maxHeight: "250px",
     // CRITICAL: We must disable the default react-select scroll behavior (maxHeight)
     // so that our custom ".dropdown-list-container" can handle scrolling
     // while keeping the Header and Footer sticky/fixed.
     // maxHeight: "initial", 
     // overflow: "hidden", 
   }),
-  option: (base, state) => ({
+  option: (base: any, state: any) => ({
     ...base,
     backgroundColor: state.isFocused ? "#fff7ed" : "white",
     color: "#374151",
@@ -56,13 +45,13 @@ const selectStyles = {
       backgroundColor: "#fff7ed",
     },
   }),
-  multiValue: (base) => ({
+  multiValue: (base: any) => ({
     ...base,
     backgroundColor: "transparent",
     margin: 0,
     padding: 0,
   }),
-  multiValueLabel: (base) => ({
+  multiValueLabel: (base: any) => ({
     ...base,
     color: "#374151",
     padding: 0,
@@ -71,7 +60,7 @@ const selectStyles = {
   multiValueRemove: () => ({
     display: "none",
   }),
-  dropdownIndicator: (base) => ({
+  dropdownIndicator: (base: any) => ({
     ...base,
     padding: "8px",
     color: "#9ca3af",
@@ -79,13 +68,13 @@ const selectStyles = {
   indicatorSeparator: () => ({
     display: "none",
   }),
-  valueContainer: (base) => ({
+  valueContainer: (base: any) => ({
     ...base,
     padding: "2px 8px",
   }),
 };
 
-const MultiValue = (props) => {
+const MultiValue = (props: any) => {
   const { index, getValue } = props;
   const selectedValues = getValue();
 
@@ -104,10 +93,10 @@ const MultiValue = (props) => {
 };
 
 // Custom MenuList Component
-const CustomMenuList = (props) => {
+const CustomMenuList = (props: any) => {
   const { selectProps, children, getValue, setValue, ...restProps } = props;
-  const onSearchChange = selectProps?.onSearchChange;
-  const searchTerm = selectProps?.searchTerm || "";
+  // const onSearchChange = selectProps?.onSearchChange;
+  // const searchTerm = selectProps?.searchTerm || "";
 
   // Get filtered options from selectProps
   const filteredOptions = selectProps?.options || [];
@@ -116,25 +105,25 @@ const CustomMenuList = (props) => {
   // "Select All" Logic
   const isAllSelected =
     filteredOptions.length > 0 &&
-    filteredOptions.every((opt) =>
-      selectedValues.some((val) => val.value === opt.value)
+    filteredOptions.every((opt: any) =>
+      selectedValues.some((val: any) => val.value === opt.value)
     );
 
-  const handleSelectAll = (e) => {
+  const handleSelectAll = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (isAllSelected) {
       // Deselect all filtered options
       const newValues = selectedValues.filter(
-        (val) => !filteredOptions.some((opt) => opt.value === val.value)
+        (val: any) => !filteredOptions.some((opt: any) => opt.value === val.value)
       );
       setValue(newValues);
     } else {
       // Select all filtered options
       const newValues = [...selectedValues];
-      filteredOptions.forEach((opt) => {
-        if (!newValues.some((val) => val.value === opt.value)) {
+      filteredOptions.forEach((opt: any) => {
+        if (!newValues.some((val: any) => val.value === opt.value)) {
           newValues.push(opt);
         }
       });
@@ -142,7 +131,7 @@ const CustomMenuList = (props) => {
     }
   };
 
-  const handleClearSelection = (e) => {
+  const handleClearSelection = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     setValue([]);
@@ -178,12 +167,12 @@ const CustomMenuList = (props) => {
       </div>
 
       <div className="dropdown-list-container">
-         {children}
-         {(!children || (Array.isArray(children) && children.length === 0)) && (
-            <div style={{ padding: '8px 12px', color: '#9ca3af', textAlign: 'center' }}>
-              No options found
-            </div>
-         )}
+        {children}
+        {(!children || (Array.isArray(children) && children.length === 0)) && (
+          <div style={{ padding: '8px 12px', color: '#9ca3af', textAlign: 'center' }}>
+            No options found
+          </div>
+        )}
       </div>
 
       <div className="dropdown-footer">
@@ -196,7 +185,7 @@ const CustomMenuList = (props) => {
 };
 
 // Custom Option Component
-const CustomOption = (props) => {
+const CustomOption = (props: any) => {
   const { isSelected, label, data } = props;
   const optionLabel = data?.label || label || props.children;
 
@@ -215,7 +204,7 @@ const CustomOption = (props) => {
   );
 };
 
-const CustomDropdownIndicator = (props) => (
+const CustomDropdownIndicator = (props: any) => (
   <components.DropdownIndicator {...props}>
     <FaSearch size={14} />
   </components.DropdownIndicator>
@@ -229,12 +218,12 @@ const customComponents = {
 };
 
 // Reusable FilterDropdown Component
- const FilterDropdown = ({ label, options = [], value, onChange }) => {
+const FilterDropdown = ({ label, options = [], value, onChange }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredOptions = useMemo(() => {
     if (!searchTerm) return options;
-    return options.filter((opt) =>
+    return options.filter((opt: any) =>
       opt.label.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [options, searchTerm]);
@@ -253,10 +242,11 @@ const customComponents = {
       onMenuClose={() => setSearchTerm("")}
       components={customComponents}
       // Pass custom props via Select to access them in MenuList via selectProps
+      // @ts-ignore
       onSearchChange={setSearchTerm}
       searchTerm={searchTerm}
     />
   );
 };
 
-export default FilterDropdown;
+export default memo(FilterDropdown);

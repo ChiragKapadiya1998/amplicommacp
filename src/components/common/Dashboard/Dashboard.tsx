@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useState, memo, lazy, useEffect } from "react";
 import "./dashboard.css";
 import { useNavigate } from "react-router-dom";
-import GmvBreakdown from "./GmvBreakdown";
+// import Loading from "../../common/Loading/Loading";
 
-const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState("Seller");
+const GmvBreakdown = lazy(() => import("./GmvBreakdown"));
+
+interface BreakdownItem {
+  title: string;
+  updatedAt: string;
+  columns: string[];
+  data: any[];
+}
+
+interface DashboardProps {
+  breakdownData: BreakdownItem[];
+  tabsData: any[];
+}
+
+const Dashboard = ({ breakdownData, tabsData }: DashboardProps) => {
+  const [activeTab, setActiveTab] = useState<string>("Seller");
   const [selectedMetric, setSelectedMetric] = useState<number>(0);
   const navigate = useNavigate();
 
-  const tabs = ["Seller", "Primary", "Secondary"];
+  useEffect(() => {
+    if (tabsData && tabsData.length > 0) {
+      setActiveTab(tabsData[0].category);
+    }
+  }, [tabsData]);
 
   const metricsData = [
     {
@@ -40,15 +58,19 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       {/* Tabs */}
-      {tabs.map((tab) => (
-        <span
-          key={tab}
-          className={`tab ${activeTab === tab ? "active" : ""}`}
-          onClick={() => setActiveTab(tab)}
-        >
-          {tab}
-        </span>
-      ))}
+      {tabsData && tabsData?.length > 0 ? (
+        tabsData?.map((tab) => (
+          <span
+            key={tab.dashboard_id}
+            className={`tab ${activeTab === tab.category ? "active" : ""}`}
+            onClick={() => setActiveTab(tab.category)}
+          >
+            {tab.category}
+          </span>
+        ))
+      ) : (
+        <span>Loading Tabs...</span>
+      )}
 
       {/* Metrics */}
       <div className="metrics-card">
@@ -86,11 +108,15 @@ const Dashboard = () => {
 
 
       <div className="top-performers">Top-Performers</div>
-      <GmvBreakdown />
+      {/* <Suspense fallback={<SkeletonLoader height="200px" />}> */}
+      <GmvBreakdown breakdownData={breakdownData} />
+      {/* </Suspense> */}
       <div className="top-performers under-performers">Under-Performers</div>
-      <GmvBreakdown />
+      {/* <Suspense fallback={<SkeletonLoader height="200px" />}> */}
+      <GmvBreakdown breakdownData={breakdownData} />
+      {/* </Suspense> */}
     </div>
   );
 };
 
-export default Dashboard;
+export default memo(Dashboard);

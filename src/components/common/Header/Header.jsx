@@ -1,13 +1,13 @@
 import { FaAngleDown, FaTimes } from "react-icons/fa";
 import "./Header.css";
-import { useRef, useState } from "react";
+import { useRef, useState, memo } from "react";
 import DateRangePicker from "rsuite/DateRangePicker";
 import constantData from "../../../utils/constant.json";
 import { useDateFilter } from "../../../context/DateFilterContext";
 
 const { PERIODS } = constantData;
 
-export default function Header() {
+function Header() {
   const {
     activePeriod,
     setActivePeriod,
@@ -89,6 +89,7 @@ export default function Header() {
             src="https://img.freepik.com/free-vector/logo-with-shape-3d_1043-51.jpg?t=st=1767846251~exp=1767849851~hmac=d418669011df025853a24dcc3401a5879de64b9b2ca217d097ee482d0cbf2ced&w=2000"
             // src="https://app-stage.amplicommacp.com/assets/assets/amplicommlogo.c57c1180cfce1ec88045b3288b068bb0.svg?platform=web&hash=c57c1180cfce1ec88045b3288b068bb0"
             alt="Amplicomm"
+            loading="lazy" 
           />
           <h1 className="title">Home</h1>
         </div>
@@ -242,3 +243,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default memo(Header);

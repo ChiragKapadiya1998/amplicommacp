@@ -5,8 +5,9 @@ import { GoSearch } from "react-icons/go";
 import { IoSettingsOutline } from "react-icons/io5";
 
 import "./Sidebar.css";
+import { memo } from "react";
 
-export default function Sidebar() {
+function Sidebar() {
   return (
     <aside className="sidebar">
       <NavLink to="/" end className="nav-btn">
@@ -27,3 +28,5 @@ export default function Sidebar() {
     </aside>
   );
 }
+
+export default memo(Sidebar);

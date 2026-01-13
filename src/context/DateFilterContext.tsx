@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, type ReactNode } from 'react';
+import React, { createContext, useContext, useState, type ReactNode, memo } from 'react';
 
 // Define the shape of the context state
 interface DateFilterContextType {
@@ -14,7 +14,7 @@ interface DateFilterContextType {
 const DateFilterContext = createContext<DateFilterContextType | undefined>(undefined);
 
 // Create a provider component
-export const DateFilterProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const DateFilterProvider: React.FC<{ children: ReactNode }> = memo(({ children }) => {
     const [activePeriod, setActivePeriod] = useState<string>("1D");
     const [dateRange, setDateRange] = useState<{ start: Date; end: Date } | null>(null);
     const [compareDateRange, setCompareDateRange] = useState<{ start: Date; end: Date } | null>(null);
@@ -33,7 +33,7 @@ export const DateFilterProvider: React.FC<{ children: ReactNode }> = ({ children
             {children}
         </DateFilterContext.Provider>
     );
-};
+});
 
 // Custom hook to use the context
 export const useDateFilter = () => {

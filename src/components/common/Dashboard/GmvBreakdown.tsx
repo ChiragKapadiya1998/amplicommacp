@@ -1,22 +1,34 @@
-import React from "react";
-import breakdownData from "./GmvBreakdown.json";
+import { memo } from "react";
+import breakdownData1 from "./GmvBreakdown.json";
 import BreakdownCard from "./BreakdownCard";
 import "./Dashboard.css";
 
-const GmvBreakdown = () => {
+interface BreakdownItem {
+  title: string;
+  updatedAt: string;
+  columns: string[];
+  data: any[];
+}
+
+interface GmvBreakdownProps {
+  breakdownData: BreakdownItem[];
+}
+
+const GmvBreakdown = ({ breakdownData }: GmvBreakdownProps) => {
+  console.log("breakdownData1", breakdownData);
   return (
     <div className="gmv-breakdown-container">
-      {breakdownData.map((card, index) => (
+      {breakdownData1?.map((card, index) => (
         <BreakdownCard
           key={index}
-          title={card.title}
-          updatedAt={card.updatedAt}
-          columns={card.columns}
-          data={card.data}
+          title={card?.title}
+          updatedAt={card?.updatedAt}
+          columns={card?.columns}
+          data={card?.data}
         />
       ))}
     </div>
   );
 };
 
-export default GmvBreakdown;
+export default memo(GmvBreakdown);

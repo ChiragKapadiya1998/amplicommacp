@@ -1,6 +1,7 @@
 import { IoFilterOutline } from "react-icons/io5";
+import { memo } from "react";
 
-export default function MetricsSidebar() {
+function MetricsSidebar() {
     const metrics = [
         { label: 'Session', value: '1.78Cr', change: '+275%', isPositive: true },
         { label: 'Orders', value: '6.99L', change: '+184%', isPositive: true },
@@ -44,3 +45,5 @@ export default function MetricsSidebar() {
         </div>
     );
 }
+
+export default memo(MetricsSidebar);

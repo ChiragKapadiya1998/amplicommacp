@@ -1,8 +1,9 @@
 import ChartSection from './ChartSection';
 import MetricsSidebar from './MetricsSidebar';
 import './GmvChart.css';
+import { memo } from 'react';
 
-export default function GmvChart() {
+function GmvChart() {
     return (
         <div className="gmv-chart-container">
             <ChartSection />
@@ -10,3 +11,5 @@ export default function GmvChart() {
         </div>
     );
 }
+
+export default memo(GmvChart);

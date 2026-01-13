@@ -1,4 +1,6 @@
-export default function Info() {
+import { memo } from "react";
+
+function Info() {
   return (
     <>
       <iframe
@@ -10,3 +12,5 @@ export default function Info() {
     </>
   );
 }
+
+export default memo(Info);
